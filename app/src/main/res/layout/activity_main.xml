@@ -10,10 +10,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="kakhavai.calpoly.edu.studybuddy.MainActivity">
 
-    <TextView
+    <ListView
+        android:id = "@+id/classListView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        />
 
     <ImageButton
         android:layout_width="65dp"

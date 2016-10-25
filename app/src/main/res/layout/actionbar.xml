@@ -6,6 +6,7 @@
 
     <TextView
         android:text="Calendar"
+        android:id = "@+id/calendar"
         android:textSize="20sp"
         android:textColor="@android:color/black"
 
@@ -16,6 +17,7 @@
 
     <TextView
         android:text="Add Class"
+        android:id = "@+id/addClass"
         android:textSize="20sp"
         android:textColor="@android:color/black"
 
@@ -26,6 +28,7 @@
 
     <TextView
         android:text="Settings"
+        android:id = "@+id/settings"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:layout_width="wrap_content"
