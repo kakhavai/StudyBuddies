@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This method provides an action bar with the necessary items
      * The ids of which are calendar, addClass, and settings
+     * @Author: Kian
      */
     private void showActionBar() {
         LayoutInflater inflator = (LayoutInflater) this
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This method will build the onclick functionality for the fab
+     * @Author: Kian
      */
     private void buildFabOnClick(){
         ImageButton fab = (ImageButton)findViewById(R.id.fab);
