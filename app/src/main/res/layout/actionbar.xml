@@ -7,9 +7,9 @@
     <TextView
         android:text="Calendar"
         android:id = "@+id/calendar"
-        android:textSize="20sp"
+        android:textSize="12sp"
         android:textColor="@android:color/black"
-
+        android:onClick="onClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -18,9 +18,9 @@
     <TextView
         android:text="Add Class"
         android:id = "@+id/addClass"
-        android:textSize="20sp"
+        android:textSize="12sp"
         android:textColor="@android:color/black"
-
+        android:onClick="onClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -30,7 +30,8 @@
         android:text="Settings"
         android:id = "@+id/settings"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
+        android:textSize="12sp"
+        android:onClick="onClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"

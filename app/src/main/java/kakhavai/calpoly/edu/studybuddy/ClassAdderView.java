@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import kakhavai.calpoly.edu.studybuddy.MainActivity.Class;
 
 /**
  * Screen with the class addition specs. User may enter class name and
@@ -46,10 +47,12 @@ public class ClassAdderView extends AppCompatActivity implements View.OnClickLis
      */
     public void onClick(View v) {
         if (v == confirmB) {
+            final Class item = new Class(null);
             String classString = inputClassText.getText().toString();
+            item.setClassName(classString);
             if (classString.length() > 0) {
                 Intent sendClassString = new Intent();
-                sendClassString.putExtra("class name", classString);
+                sendClassString.putExtra("class name", item);
                 setResult(RESULT_OK, sendClassString);
                 super.finish();
             }
