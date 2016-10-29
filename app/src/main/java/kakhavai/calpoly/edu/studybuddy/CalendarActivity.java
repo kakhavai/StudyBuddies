@@ -1,17 +1,27 @@
 package kakhavai.calpoly.edu.studybuddy;
 
+import android.content.ContentValues;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.CalendarView;
-import android.widget.Toast;
+import android.text.format.Time;
+
+import com.tyczj.extendedcalendarview.CalendarProvider;
+import com.tyczj.extendedcalendarview.Event;
+import com.tyczj.extendedcalendarview.ExtendedCalendarView;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Calendar Class. Allows for specific day to be selected on calendar.
- * @Author: Ani
+ * @Author: Kian
  */
 
 public class CalendarActivity extends AppCompatActivity {
-    CalendarView calendar;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,12 +29,34 @@ public class CalendarActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
 
-        calendar = (CalendarView)findViewById(R.id.calendarSetup);
-        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(CalendarView calendarView, int i, int i1, int i2) {
-                Toast.makeText(getApplicationContext(), "Gotta implement next screen", Toast.LENGTH_SHORT).show();
-            }
-        });
+        ExtendedCalendarView calendar = (ExtendedCalendarView)findViewById(R.id.calendar);
+        ContentValues values = new ContentValues();
+        values.put(CalendarProvider.COLOR, Event.COLOR_RED);
+
+        values.put(CalendarProvider.DESCRIPTION, "Some Description");
+        values.put(CalendarProvider.LOCATION, "Some location");
+        values.put(CalendarProvider.EVENT, "Event name");
+        Calendar cal = Calendar.getInstance();
+        cal.set(2016,9,16);
+        values.put(CalendarProvider.START, cal.getTimeInMillis());
+        GregorianCalendar gc = new GregorianCalendar();
+        gc.set(2016,9,16);
+        TimeZone tz = TimeZone.getDefault();
+
+        int startDay = Time.getJulianDay(cal.getTimeInMillis(),TimeUnit.MILLISECONDS.toSeconds(tz.getOffset(cal.getTimeInMillis())));
+
+        Date time = gc.getTime();
+
+        values.put(CalendarProvider.START_DAY, startDay);
+
+
+
+        int endDayJulian = Time.getJulianDay(cal.getTimeInMillis(), TimeUnit.MILLISECONDS.toSeconds(tz.getOffset(cal.getTimeInMillis())));
+
+        values.put(CalendarProvider.END, cal.getTimeInMillis());
+        values.put(CalendarProvider.END_DAY, endDayJulian);
+
+        Uri uri = getContentResolver().insert(CalendarProvider.CONTENT_URI, values);
+
     }
 }
