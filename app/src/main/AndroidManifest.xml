@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="kakhavai.calpoly.edu.studybuddy">
 
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,6 +28,9 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".testsAndAssignments"/>
+        <receiver android:name=".notificationUpdater"/>
+        <service android:name=".NotificationDisplayer"/>
     </application>
 
 </manifest>

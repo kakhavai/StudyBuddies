@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,10 +23,12 @@ public class MainActivity extends AppCompatActivity {
     private ClassListAdapter classAdapter;
     private ListView classListView;
     private static final int REQUEST_CODE = 10;
+    private static final int REQUEST_CODE_WORK = 11;
 
     /**
      * Class "Class" which allows us to instantiate an object of type class. It can hold the name of
-     * the class, and added tests/assignments as indicated by the user.
+     * the class, and added tests/assignments as indicated by the user. Class is parcelable so we can
+     * write data to file
      */
     static class Class implements Parcelable{
         ArrayList<String> tests; //holds the tests
@@ -102,6 +105,25 @@ public class MainActivity extends AppCompatActivity {
         classListView = (ListView)findViewById(R.id.classListView);
         classAdapter = new ClassListAdapter(this, classes);
         classListView.setAdapter(classAdapter);
+
+        /**
+         * onClick listener which allows us to select the specific courses. Passes class object at current
+         * selected index to tests and assignments activity where the values are populated.
+         */
+        classListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                final Class temp = classes.get(position);
+                Intent toDoView = new Intent(getApplicationContext(), testsAndAssignments.class);
+
+                /* uncomment when continuing
+                toDoView.putExtra("object", temp);
+                toDoView.putExtra("index", position);
+                */
+
+                startActivityForResult(toDoView, REQUEST_CODE_WORK);
+            }
+        });
 
         buildFabOnClick();
 
@@ -180,9 +202,15 @@ public class MainActivity extends AppCompatActivity {
      * @Author: Ani
      */
     protected void onActivityResult(int requestCode, int resultCode, Intent classAdderIntent){
-        if(requestCode == REQUEST_CODE && resultCode == RESULT_OK){
-            Class className = classAdderIntent.getExtras().getParcelable("class name");
-            classAdapter.add(className);
+        if(resultCode == RESULT_OK){
+            switch(requestCode){
+                case REQUEST_CODE:
+                    Class className = classAdderIntent.getExtras().getParcelable("class name");
+                    classes.add(className);
+                    classAdapter.notifyDataSetChanged();
+                    //classAdapter.add(className);
+                    break;
+            }
         }
     }
 }

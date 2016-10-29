@@ -9,10 +9,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical">
 
-    <CalendarView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/calendarSetup">
-    </CalendarView>
+        android:id="@+id/scrollData">
+
+        <CalendarView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/calendarSetup">
+        </CalendarView>
+
+    </ScrollView>
+
 
 </LinearLayout>

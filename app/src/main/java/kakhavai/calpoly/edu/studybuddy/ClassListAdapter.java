@@ -25,7 +25,6 @@ public class ClassListAdapter extends ArrayAdapter<Class> {
         super(context, 0, items);
     }
 
-    //
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
@@ -48,6 +47,4 @@ public class ClassListAdapter extends ArrayAdapter<Class> {
 
         return convertView;
     }
-
-
 }
